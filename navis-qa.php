@@ -63,7 +63,8 @@ class Navis_QA {
     }
     
     function add_tinymce_plugin($plugins_array) {
-        
+        $plugins_array['navis_qa'] = plugins_url(
+            'js/tinymce-qa.js', __FILE__);
         return $plugins_array;
     }
     
