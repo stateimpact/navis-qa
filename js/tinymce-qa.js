@@ -38,9 +38,9 @@
                         .text('A: ');
                         
                 var answer = $('<p/>')
-                                .attr('class', 'answer')
-                                .html(content)
-                                .prepend(a);
+                            .attr('class', 'answer')
+                            .html(content)
+                            .prepend(a);
                 
                 // same as above
                 var html = $('<div/>').append(answer).html();
