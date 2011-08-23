@@ -1,0 +1,43 @@
+/* Q&A */
+
+#content .question {
+	position: relative;
+	padding-left: 30px;
+	font-weight: bold;
+}
+
+#content .answer {
+	position: relative;
+	padding-left: 30px;
+}
+
+.question .abbr, .answer .abbr {
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #999;
+	font-size: 20px;
+	line-height: 1;
+	font-weight: normal;
+}
+
+.question abbr, .answer abbr {
+	border-bottom: none;
+}
+
+.ie6 .question .abbr, .ie6 .answer .abbr {
+	position: absolute;
+	top: 0;
+	left: -30px;
+}
+
+#content .contenttype-short-post blockquote, #content .contenttype-quote blockquote {
+	background-color: transparent;
+	padding: 0 20px;
+	border-left: 4px solid #333;
+	margin: 10px 0;
+}
+
+#content .contenttype-short-post blockquote p, #content .contenttype-quote blockquote p {
+	margin: 0 0 10px 0;
+}

@@ -34,15 +34,7 @@ class Navis_QA {
         add_action('init', array(&$this, 'register_tinymce_filters'));
         
         // scripts & styles
-        add_action( 'admin_print_scripts-post.php', 
-            array( &$this, 'register_admin_scripts' )
-        );
-        add_action( 'admin_print_scripts-post-new.php', 
-            array( &$this, 'register_admin_scripts' )
-        );
-        add_action( 'wp_print_scripts',
-            array( &$this, 'register_scripts' )
-        );
+        /***
         add_action( 
             'admin_print_styles-post.php', array( &$this, 'add_stylesheet' ) 
         );
@@ -50,7 +42,7 @@ class Navis_QA {
             'admin_print_styles-post-new.php', 
             array( &$this, 'add_stylesheet' ) 
         );
-        
+        ***/        
     }
     
     function register_tinymce_filters() {
@@ -60,6 +52,7 @@ class Navis_QA {
         add_filter('mce_buttons', 
             array(&$this, 'register_button')
         );
+        add_filter('mce_css', array(&$this, 'mce_css'));
     }
     
     function add_tinymce_plugin($plugins_array) {
@@ -72,18 +65,16 @@ class Navis_QA {
         array_push($buttons, '|', 'question', 'answer', '|');
         return $buttons;
     }
-    
-    
-    function register_admin_scripts() {
         
-    }
-    
-    function register_scripts() {
-        
-    }
-    
     function add_stylesheet() {
-        
+        $css = plugins_url( 'css/qa.css', __FILE__ );
+        wp_enqueue_style('qa-styles', $css, array(), '0.1');
+    }
+    
+    function mce_css($mce_css) {
+        if (! empty($mce_css)) $mce_css .= ',';
+        $mce_css .= plugins_url( 'css/qa-editor.css', __FILE__ );
+        return $mce_css;
     }
 }
 
