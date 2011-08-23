@@ -30,19 +30,8 @@ class Navis_QA {
         // add admin styles
         // include qa css
         
-        // tinymce plugin
         add_action('init', array(&$this, 'register_tinymce_filters'));
-        
-        // scripts & styles
-        /***
-        add_action( 
-            'admin_print_styles-post.php', array( &$this, 'add_stylesheet' ) 
-        );
-        add_action( 
-            'admin_print_styles-post-new.php', 
-            array( &$this, 'add_stylesheet' ) 
-        );
-        ***/        
+        add_action('init', array(&$this, 'add_stylesheet'));
     }
     
     function register_tinymce_filters() {
@@ -76,6 +65,7 @@ class Navis_QA {
         $mce_css .= plugins_url( 'css/qa-editor.css', __FILE__ );
         return $mce_css;
     }
+    
 }
 
 new Navis_QA;
