@@ -12,20 +12,33 @@
             // Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceExample');
                         
             ed.addCommand('question', function() {
+                var html;
                 var content = ed.selection.getContent();
                 var q = $('<span/>')
                         .attr('class', 'abbr')
                         .attr('title', 'question')
                         .text('Q: ');
-                        
-                var question = $('<p/>')
-                                .attr('class', 'question')
-                                .html(content)
-                                .prepend(q);
                 
-                // stringify (yes, this is an ugly hack)
-                // tinymce needs a string here, not an object
-                var html = $('<div/>').append(question).html();
+                var question = $('<div/>').html(content);
+                if (question.find('p').length) { 
+                    // more than one graf selected
+                    question.find('p').first().prepend(q);
+                    question.find('p').each(function(){
+                        if (! $.trim( $(this).text() ) ) {
+                            $(this).remove();
+                        } else {
+                            $(this).addClass('question');
+                        }
+                    });
+                    html = question.html();
+                } else {
+                    // just one line, so make it a p
+                    question = $('<p/>').html(content)
+                                .addClass('question')
+                                .prepend(q);
+                    html = $('<div/>').append(question).html();
+                };
+                
                 ed.focus();
                 ed.selection.setContent(html);
             });
@@ -37,10 +50,18 @@
                         .attr('title', 'answer')
                         .text('A: ');
                         
-                var answer = $('<p/>')
+                var answer = $('<div/>')
                             .attr('class', 'answer')
-                            .html(content)
-                            .prepend(a);
+                            .html(content);
+                
+                answer.find('p').first().prepend(a);
+                
+                // clear out empty tags
+                answer.children().each(function() {
+                    if (! $.trim( $(this).text() ) ) {
+                        $(this).remove();
+                    }
+                });
                 
                 // same as above
                 var html = $('<div/>').append(answer).html();

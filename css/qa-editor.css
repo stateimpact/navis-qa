@@ -7,6 +7,6 @@ p.question {
     margin-left: 2em;
 }
 
-p.answer {
+div.answer p {
     margin-left: 2em;
 }
