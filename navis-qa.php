@@ -62,7 +62,7 @@ class Navis_QA {
     
     function mce_css($mce_css) {
         if (! empty($mce_css)) $mce_css .= ',';
-        $mce_css .= plugins_url( 'css/qa-editor.css', __FILE__ );
+        $mce_css .= plugins_url( 'css/qa-editor.css?v=1', __FILE__ );
         return $mce_css;
     }
     

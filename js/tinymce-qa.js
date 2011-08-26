@@ -20,6 +20,7 @@
                         .text('Q: ');
                 
                 var question = $('<div/>').html(content);
+                
                 if (question.find('p').length) { 
                     // more than one graf selected
                     question.find('p').first().prepend(q);
@@ -50,21 +51,27 @@
                         .attr('title', 'answer')
                         .text('A: ');
                         
-                var answer = $('<div/>')
-                            .attr('class', 'answer')
-                            .html(content);
+                var answer = $('<div/>').html(content);
+                if (answer.find('p').length) {
+                    // a multiline answer
+                    answer.find('p').first().prepend(a);
+                    answer.find('p').each(function() {
+                        if (! $.trim( $(this).text() ) ) {
+                            $(this).remove();
+                        } else {
+                            $(this).addClass('answer');
+                        }
+                    });
+                    html = answer.html();
+                } else {
+                    // one liner
+                    answer = $('<p/>').html(content)
+                            .addClass('answer')
+                            .prepend(a);
+                    html = $('<div/>').append(answer).html();
+                }
                 
-                answer.find('p').first().prepend(a);
                 
-                // clear out empty tags
-                answer.children().each(function() {
-                    if (! $.trim( $(this).text() ) ) {
-                        $(this).remove();
-                    }
-                });
-                
-                // same as above
-                var html = $('<div/>').append(answer).html();
                 ed.focus();
                 ed.selection.setContent(html);
             });
