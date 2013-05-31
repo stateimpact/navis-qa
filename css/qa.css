@@ -12,7 +12,7 @@
 }
 
 .question .abbr, .answer .abbr {
-	position: relative;
+	position: absolute;
 	top: 0;
 	left: 0;
 	color: #999;
@@ -26,7 +26,7 @@
 }
 
 .ie6 .question .abbr, .ie6 .answer .abbr {
-	position: relative;
+	position: absolute;
 	top: 0;
 	left: -30px;
 }
