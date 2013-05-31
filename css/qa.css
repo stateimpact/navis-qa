@@ -26,7 +26,7 @@
 }
 
 .ie6 .question .abbr, .ie6 .answer .abbr {
-	position: absolute;
+	position: relative;
 	top: 0;
 	left: -30px;
 }
